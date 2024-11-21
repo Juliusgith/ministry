@@ -1,0 +1,316 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Precious Beloved Ministries</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap.min.css'%}">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Bootstrap and jQuery JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Font Awesome for Social Icons (Add this to your head section) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    
+
+</body>
+    <style>
+        /* Custom Styles for Top Bar */
+        .top-bar {
+            background-color: #0d1540; /* Dark blue background */
+            color: white;
+            font-size: 14px;
+            padding: 5px 0;
+        }
+        .top-bar a {
+            color: white;
+            margin-right: 15px;
+            text-decoration: none;
+        }
+        .top-bar .contact-info i {
+            margin-right: 5px;
+        }
+
+        /* Main Navbar Styles */
+        .navbar-main {
+            background-color: rgba(0, 0, 0, 0.5); /* Dark blue with reduced opacity */
+        }
+        .navbar .nav-link, .navbar-brand {
+            color: white; /* Orange color for the navbar text */
+        }
+
+        /* Hover Effects for all Devices */
+        .navbar .nav-link:hover {
+            color: orange; /* Keep orange on hover */
+            text-decoration: underline;
+            text-decoration-color: red; /* Red underline on hover */
+            transition: .5s;
+        }
+
+        /* Apply Now Button */
+        .btn-apply {
+            background-color: #ff3333;
+            color: white;
+            border-radius: 5px;
+            padding: 8px 16px;
+            text-transform: uppercase;
+        }
+        .btn-apply:hover {
+            background-color: #e62e2e;
+        }
+
+        /* Custom Styles for Navbar Logo */
+        .navbar-logo {
+            width: 70px;
+            height: auto;
+        }
+
+        /* Separation between Top Bar and Main Navbar */
+        .navbar-separator {
+            margin-bottom: 10px; /* Space between top bar and main navbar */
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            /* Active Line for Small Devices */
+            .navbar .nav-link.active {
+                border-bottom: 2px solid red; /* Red underline for active link on small devices */
+            }
+        }
+
+        @media (max-width: 992px) {
+            .top-bar .social-links {
+                display: none;
+            }
+        }
+        /* Navbar transition effect */
+.navbar-main {
+    background-color: rgba(0, 0, 0, 0.); /* Reduced opacity to 0.2 for a more transparent background */
+    transition: background-color 1.5s ease; /* Smooth transition for color change */
+}
+
+
+    </style>
+</head>
+<body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var carouselElement = document.querySelector('#imageCarousel');
+        var navbarElement = document.querySelector('.navbar-main');
+
+        // Define background colors for each carousel item
+        var backgroundColors = [
+            'rgba(0, 51, 102, 0.7)', // For first image
+            'rgba(102, 51, 153, 0.7)', // For second image
+            'rgba(0, 102, 204, 0.7)', // For third image
+            'rgba(204, 51, 0, 0.7)'   // For fourth image
+        ];
+
+        // Function to change navbar background color based on active carousel slide
+        function updateNavbarBackground() {
+            var activeItem = carouselElement.querySelector('.carousel-item.active');
+            var activeIndex = Array.from(carouselElement.querySelectorAll('.carousel-item')).indexOf(activeItem);
+            navbarElement.style.backgroundColor = backgroundColors[activeIndex];
+        }
+
+        // Listen for carousel slide changes and update the navbar background
+        carouselElement.addEventListener('slid.bs.carousel', updateNavbarBackground);
+
+        // Initialize navbar background on page load
+        updateNavbarBackground();
+    });
+</script>
+
+  
+
+<!-- Top Bar with Contact Information -->
+<div class="top-bar py-2 ">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Left side with email and phone number -->
+            <div class="col-md-6 col-sm-12 d-flex flex-column flex-md-row align-items-center justify-content-center justify-content-md-start">
+                <span><i class="bi bi-envelope"></i> Brianmungujakisa02@gmail.com</span>
+                <span class="ms-md-4 mt-2 mt-md-0"><i class="bi bi-telephone"></i> +256 770927154</span>
+            </div>
+            <!-- Right side with links -->
+            <div class="col-md-6 col-sm-12 text-center text-md-end mt-2 mt-md-0">
+                <a href="{% url 'about_us' %}#vission" class="text-light me-md-2">Our Vision</a> |
+                <a href="{% url 'about_us' %}#mission" class="text-light ms-md-2">Our Mission</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Add Custom Styling -->
+<style>
+    .top-bar {
+        background-color: #4c1188; /* Dark background for top bar */
+        color: white; /* White text color */
+        font-size: 14px; /* Font size for small screens */
+    }
+    
+    .top-bar a {
+        color: white;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+    
+    .top-bar a:hover {
+        color: #ffcc00; /* Change link color on hover */
+    }
+
+    .bi {
+        margin-right: 5px; /* Add spacing between icon and text */
+    }
+
+    @media (max-width: 768px) {
+        .top-bar span, .top-bar a {
+            font-size: 13px; /* Slightly smaller font on small devices */
+        }
+    }
+</style>
+
+
+<!-- Space for Separation -->
+<div class="navbar-separator"></div>
+
+<!-- Main Navbar -->
+<nav class="navbar navbar-expand-lg navbar-main">
+  <div class="container-fluid">
+    <!-- Logo on the left -->
+    <a class="navbar-brand" href="#">
+      <img src="{% static 'images/Logo.png' %}" alt="Logo" class="navbar-logo">
+    </a>
+
+    <!-- Toggler for mobile view -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar Links -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'home' %}" style="color: orange;">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'about_us' %}">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'home' %}#ministries">Ministries</a>
+      </li>
+      
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'home' %}#event">Events</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'contact_us' %}">Contact Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-apply" href="{% url 'register_donation' %}">Donate Now</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<style>
+  /* Make the navbar toggler icon white */
+  .navbar-toggler {
+    border: none; /* Remove border around toggler button */
+  }
+
+  .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+  }
+
+  
+
+  .btn-apply {
+    background-color: #ff5733;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-apply:hover {
+    background-color: #c44520;
+  }
+</style>
+
+<!-- Bootstrap JS and Popper.js -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
+<!-- Scroll to Top Button -->
+<a href="#" class="scroll-to-top">
+    <i class="bi bi-arrow-up-circle-fill"></i>
+  </a>
+
+  <!-- Styling for Scroll to Top Button -->
+<style>
+    .scroll-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: none;
+      background-color: #0069d9;
+      color: #fff;
+      padding: 10px;
+      border-radius: 50%;
+      font-size: 2rem;
+      z-index: 1000;
+      cursor: pointer;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+  
+    .scroll-to-top:hover {
+      background-color: #0056b3;
+      transform: scale(1.1); /* Slightly enlarge the icon on hover */
+    }
+  
+    /* Show the button when scrolling down */
+    .scroll-to-top.show {
+      display: block;
+      opacity: 1;
+    }
+  </style>
+
+<script>
+    // Show or hide the button when scrolling
+    window.onscroll = function() {
+      const scrollButton = document.querySelector('.scroll-to-top');
+      if (document.documentElement.scrollTop > 300) { // 300px from top
+        scrollButton.classList.add('show');
+      } else {
+        scrollButton.classList.remove('show');
+      }
+    };
+  
+    // Scroll back to top when the button is clicked
+    document.querySelector('.scroll-to-top').addEventListener('click', function(e) {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth' // Smooth scrolling effect
+      });
+    });
+  </script>
+  
+
+{% block content %}
+{% endblock %}

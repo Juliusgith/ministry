@@ -1,0 +1,203 @@
+/* Custom Styles for Top Bar */
+.top-bar {
+    background-color: #0d1540; /* Dark blue background */
+    color: white;
+    font-size: 14px;
+    padding: 5px 0;
+}
+.top-bar a {
+    color: white;
+    margin-right: 15px;
+    text-decoration: none;
+}
+.top-bar .contact-info i {
+    margin-right: 5px;
+}
+
+/* Main Navbar Styles */
+.navbar-main {
+    background-color: rgba(0, 0, 0, 0.5); /* Dark blue with reduced opacity */
+}
+.navbar .nav-link, .navbar-brand {
+    color: white; /* Orange color for the navbar text */
+}
+
+/* Hover Effects for all Devices */
+.navbar .nav-link:hover {
+    color: orange; /* Keep orange on hover */
+    text-decoration: underline;
+    text-decoration-color: red; /* Red underline on hover */
+    transition: .5s;
+}
+
+/* Apply Now Button */
+.btn-apply {
+    background-color: #ff3333;
+    color: white;
+    border-radius: 5px;
+    padding: 8px 16px;
+    text-transform: uppercase;
+}
+.btn-apply:hover {
+    background-color: #e62e2e;
+}
+
+/* Custom Styles for Navbar Logo */
+.navbar-logo {
+    width: 70px;
+    height: auto;
+}
+
+/* Separation between Top Bar and Main Navbar */
+.navbar-separator {
+    margin-bottom: 10px; /* Space between top bar and main navbar */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    /* Active Line for Small Devices */
+    .navbar .nav-link.active {
+        border-bottom: 2px solid red; /* Red underline for active link on small devices */
+    }
+}
+
+@media (max-width: 992px) {
+    .top-bar .social-links {
+        display: none;
+    }
+}
+/* Navbar transition effect */
+.navbar-main {
+background-color: rgba(0, 0, 0, 0.); /* Reduced opacity to 0.2 for a more transparent background */
+transition: background-color 1.5s ease; /* Smooth transition for color change */
+}
+
+
+.top-bar {
+    background-color: #4c1188; /* Dark background for top bar */
+    color: white; /* White text color */
+    font-size: 14px; /* Font size for small screens */
+}
+
+.top-bar a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.top-bar a:hover {
+    color: #ffcc00; /* Change link color on hover */
+}
+
+.bi {
+    margin-right: 5px; /* Add spacing between icon and text */
+}
+
+@media (max-width: 768px) {
+    .top-bar span, .top-bar a {
+        font-size: 13px; /* Slightly smaller font on small devices */
+    }
+}
+
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none;
+    background-color: #0069d9;
+    color: #fff;
+    padding: 10px;
+    border-radius: 50%;
+    font-size: 2rem;
+    z-index: 1000;
+    cursor: pointer;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .scroll-to-top:hover {
+    background-color: #0056b3;
+    transform: scale(1.1); /* Slightly enlarge the icon on hover */
+  }
+
+  /* Show the button when scrolling down */
+  .scroll-to-top.show {
+    display: block;
+    opacity: 1;
+  }
+
+
+  /* Ensure carousel and images cover full viewport */
+  .carousel-item {
+    height: 100vh; /* Full viewport height */
+    position: relative;
+}
+
+.carousel-image {
+    object-fit: cover; /* Ensures the image covers the entire area */
+    height: 100vh; /* Full viewport height */
+    width: 100%; /* Full width */
+    opacity: 0; /* Start hidden */
+    transition: opacity 1.5s ease-in-out, transform 5s ease; /* Smooth fade-in and transform */
+}
+
+.carousel-item.active .carousel-image {
+    opacity: 1; /* Show active image */
+    transform: scale(1.1); /* Slight zoom effect */
+}
+
+/* Banner Styles */
+.banner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent background to highlight text */
+    color: white;
+    text-align: center;
+    opacity: 0; /* Hidden initially */
+    animation: fadeIn 2s forwards 1s; /* Fade in effect */
+}
+
+.welcome-message {
+    font-size: 3rem;
+    opacity: 0; /* Hidden initially */
+    animation: slideIn 2s forwards 2s; /* Slide in after 2 seconds */
+}
+
+/* Fade in effect for the banner */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Slide in effect for the text */
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Button Styles */
+.btn-apply {
+    background-color: #ff3333;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+}
+
+.btn-apply:hover {
+    background-color: #e62e2e;
+}

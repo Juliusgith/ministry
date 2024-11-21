@@ -1,0 +1,111 @@
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Precious Beloved Children Ministries</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+</head>
+<body style="background-image: url('{% static 'images/background.jpg' %}'); background-size: cover; background-attachment: fixed;">
+    <div class="banner-overlay"></div>
+    <div class="container mt-5">
+        <h2 class="text-center text-white">Contact Us</h2>
+        <p class="text-center text-white">We are here to answer your questions and provide more information about our ministries. Reach out to us anytime!</p>
+
+        <div class="row gy-4 d-flex flex-wrap">
+            <!-- Contact Form Section -->
+            <div class="col-lg-6">
+                <div class="card shadow mb-4">
+                    <div class="card-header bg-primary text-white text-center">
+                        <h2>Send Us a Message</h2>
+                    </div>
+                    <div class="card-body">
+                        <!-- Success Message -->
+                        {% if success_message %}
+                            <div class="alert alert-success" role="alert">
+                                {{ success_message }}
+                                <br>
+                                <a href="{% url 'home' %}" class="btn btn-primary mt-3">Go to Home Page</a>
+                            </div>
+                        <!-- Error Message -->
+                        {% elif error_message %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ error_message }}
+                                <br>
+                                <a href="{% url 'home' %}" class="btn btn-primary mt-3">Go to Home Page</a>
+                            </div>
+                        <!-- Contact Form -->
+                        {% else %}
+                            <form method="POST" class="needs-validation" novalidate>
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <div class="d-flex justify-content-between">
+                                    <button type="submit" class="btn btn-success">Submit</button>
+                                    <a href="{% url 'home' %}" class="btn btn-secondary">Home</a>
+                                </div>
+                            </form>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Information Section -->
+            <div class="col-lg-6 d-flex flex-column gap-4">
+                <div class="card shadow mb-4">
+                    <div class="card-body">
+                        <h4 class="card-title" style="color: #00509e;">Our Contact Information and Location</h4>
+                        <p><i class="bi bi-geo-alt-fill"></i> Kwio Akuru Village, Lobodegi Parish, Pokwero Subcounty, Pakwach District, Uganda</p>
+                        <p><i class="bi bi-mailbox"></i> Along Pakwach-Wadelai Road</p>
+                        <p><i class="bi bi-telephone-fill"></i> <a href="tel:+256770927154">+256 770927154</a></p>
+                        <p><i class="bi bi-envelope-fill"></i> <a href="mailto:Brianmungujakisa02@gmail.com">Brianmungujakisa02@gmail.com</a></p>
+                        <h5>Follow Us:</h5>
+                        <a href="https://facebook.com" target="_blank" class="me-3"><i class="bi bi-facebook"></i></a>
+                        <a href="https://twitter.com" target="_blank" class="me-3"><i class="bi bi-twitter"></i></a>
+                        <a href="https://instagram.com" target="_blank"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+
+                <!-- Manager Contact Info with Image on the Left -->
+                <div class="card shadow mb-4" style="background-color: #007bff; color: white;">
+                    <div class="d-flex flex-md-row flex-column align-items-center p-3">
+                        <img src="{% static 'images/Manager.jpg' %}" class="img-fluid me-md-4 mb-3 mb-md-0" alt="Manager Photo" 
+                             style="height: 200px; width: 200px; object-fit: cover; border-radius: 50%;">
+                        <div>
+                            <h4 style="color:yellow;">Contact Our Manager</h4>
+                            <h5 style="color: rgb(255, 197, 7);">Mungu Jakisa Brian</h5>
+                            <p><i class="bi bi-telephone-fill"></i> 
+                                <a href="tel:+256770927154" style="color: white;">+256 770927154</a>
+                            </p>
+                            <p><i class="bi bi-whatsapp"></i> 
+                                <a href="https://wa.me/+256770927154" target="_blank" style="color: white;">WhatsApp</a>
+                            </p>
+                            <p><i class="bi bi-envelope-fill"></i> 
+                                <a href="mailto:Brianmungujakisa02@gmail.com" style="color: white;">Brianmungujakisa02@gmail.com</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        <p>&copy; 2024 Precious Beloved Children Ministries. All rights reserved.</p>
+    </footer>
+
+    <style>
+        /* Footer Styling */
+        footer {
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+{% endblock %}

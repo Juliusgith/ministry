@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation Form</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Custom Style for the form container */
+        .form-container {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .form-control {
+            height: 45px; /* Uniform height */
+            font-size: 1rem; /* Consistent font size */
+        }
+        .form-label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body style="font-family: 'Roboto', sans-serif; background-color: #f4f4f4;">
+
+<div class="container my-5 form-container">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h3 class="card-title text-center mb-4">Donation Form</h3>
+            <form method="post">
+                {% csrf_token %}
+                
+                <!-- Name -->
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" id="name" name="name" class="form-control" placeholder="Enter your name" required>
+                </div>
+
+                <!-- Email -->
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="Enter your email" required>
+                </div>
+
+                <!-- Phone -->
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone</label>
+                    <input type="text" id="phone" name="phone" class="form-control" placeholder="Enter your phone number" required>
+                </div>
+
+                <!-- Country -->
+                <div class="mb-3">
+                    <label for="country" class="form-label">Country</label>
+                    <input type="text" id="contry" name="country" class="form-control" placeholder="Enter your country" required>
+                    
+                </div>
+
+                <!-- District -->
+                <div class="mb-3">
+                    <label for="district" class="form-label">District</label>
+                    <input type="text" id="district" name="district" class="form-control" placeholder="Enter your district" required>
+                </div>
+
+                <!-- Subcounty -->
+                <div class="mb-3">
+                    <label for="subcounty" class="form-label">Subcounty</label>
+                    <input type="text" id="subcounty" name="subcounty" class="form-control" placeholder="Enter your subcounty" required>
+                </div>
+
+                <!-- Parish -->
+                <div class="mb-3">
+                    <label for="parish" class="form-label">Parish</label>
+                    <input type="text" id="parish" name="parish" class="form-control" placeholder="Enter your parish" required>
+                </div>
+
+                <!-- Village -->
+                <div class="mb-3">
+                    <label for="village" class="form-label">Village</label>
+                    <input type="text" id="village" name="village" class="form-control" placeholder="Enter your village" required>
+                </div>
+
+                <!-- Amount -->
+                <!-- Amount -->
+                <div class="mb-3">
+                    <label for="amount" class="form-label">Amount</label>
+                    <input type="number" id="amount" name="amount" class="form-control" placeholder="Enter the amount" required min="1" step="0.01">
+                    <small class="form-text text-muted">Please enter the amount based on your currency.</small>
+                </div>
+
+
+                <!-- Category -->
+                <div class="mb-3">
+                    <label for="item_category" class="form-label">Item Category</label>
+                    <select id="item_category" name="item_category" class="form-control" required>
+                        <option value="">Select a category</option>
+                        <option value="child_sponsorship">Child Sponsorship</option>
+                        <option value="education_fund">Education Fund</option>
+                        <option value="feeding_program">Feeding Program</option>
+                        <option value="healthcare_support">Healthcare Support</option>
+                        <option value="housing_shelter">Housing Shelter</option>
+                        <option value="community_outreach">Community Outreach</option>
+                        <option value="spiritual_growth">Spiritual Growth</option>
+                        <option value="emergency_relief">Emergency Relief</option>
+                        <option value="general_support">General Support</option>
+                    </select>
+                </div>
+
+                <!-- Category Description -->
+                <div id="category-description" class="alert alert-info" style="display: none;"></div>
+
+                <!-- Submit Button -->
+                <div class="d-grid gap-2 mt-4">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="fas fa-donate"></i> Submit Donation
+                    </button>
+                </div>
+            </form>
+
+            <!-- Link to upload process -->
+            <p class="mt-4 text-center">
+                <a href="{% url 'upload_request' %}" class="btn btn-info">
+                    <i class="fas fa-upload"></i> Upload Your Payment Form
+                </a>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+<!-- JavaScript to handle category description -->
+<script>
+    const categoryDescriptions = {
+        'child_sponsorship': 'Support the education, healthcare, and basic needs of a specific child.',
+        'education_fund': 'Contribute to school fees, supplies, and educational programs for children.',
+        'feeding_program': 'Help provide nutritious meals to children in need.',
+        'healthcare_support': 'Aid in medical care, immunizations, and health check-ups for children.',
+        'housing_shelter': 'Support building safe homes and shelters for vulnerable children.',
+        'community_outreach': 'Fund projects that support families and the broader community.',
+        'spiritual_growth': 'Assist in providing resources for spiritual education and church programs.',
+        'emergency_relief': 'Provide urgent support during times of crisis, such as food, medicine, and shelter.',
+        'general_support': 'Unrestricted donations to be used where most needed within the ministry.'
+    };
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const categorySelect = document.querySelector('#item_category');
+        const descriptionDiv = document.getElementById('category-description');
+
+        function updateDescription() {
+            const selectedCategory = categorySelect.value;
+            if (selectedCategory && categoryDescriptions[selectedCategory]) {
+                descriptionDiv.style.display = 'block';
+                descriptionDiv.textContent = categoryDescriptions[selectedCategory];
+            } else {
+                descriptionDiv.style.display = 'none';
+            }
+        }
+
+        if (categorySelect) {
+            categorySelect.addEventListener('change', updateDescription);
+            updateDescription();
+        }
+    });
+</script>
+
+</body>
+</html>

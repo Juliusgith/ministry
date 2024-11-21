@@ -1,0 +1,1176 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section>
+<div class="container-fluid p-0">
+    <!-- Image Transition Section -->
+    <div id="imageCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'images/back.jpg' %}" class="d-block w-100 carousel-image" alt="Image 1">
+                <div class="banner">
+                    <h1 class="welcome-message">WELCOME TO PRECIOUS BELOVED CHILDREN MINISTRIES</h1>
+                    <a href="{% url 'about_us' %}" class="btn btn-apply mt-4">Explore More</a> <!-- CTA Button -->
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/children.jpg' %}" class="d-block w-100 carousel-image" alt="Image 2">
+                <div class="banner">
+                    <h1 class="welcome-message">Kwio Akuru Village, Lobodegi Parish, Pokwero Subcounty</h1>
+                    <a href="{% url 'contact_us' %}" class="btn btn-apply mt-4">Join Us</a> <!-- CTA Button -->
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/jeff.jpg' %}" class="d-block w-100 carousel-image" alt="Image 3">
+                <div class="banner">
+                    <h1 class="welcome-message">A Beacon of Hope in Kwio Akuru Community</h1>
+                    <a href="{% url 'blog_home' %}" class="btn btn-apply mt-4">Visit our Blog</a> <!-- CTA Button -->
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'images/gift.jpg' %}" class="d-block w-100 carousel-image" alt="Image 4">
+                <div class="banner">
+                    <h1 class="welcome-message">Be Empowered by Faith, Encouraged by Love</h1>
+                    <a href="{% url 'register_donation' %}" class="btn btn-apply mt-4">Donate Now</a> <!-- CTA Button -->
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+</section>
+<!-- CSS for transitions and effects -->
+<style>
+    /* Ensure carousel and images cover full viewport */
+    .carousel-item {
+        height: 100vh; /* Full viewport height */
+        position: relative;
+    }
+
+    .carousel-image {
+        object-fit: cover; /* Ensures the image covers the entire area */
+        height: 100vh; /* Full viewport height */
+        width: 100%; /* Full width */
+        opacity: 0; /* Start hidden */
+        transition: opacity 1.5s ease-in-out, transform 5s ease; /* Smooth fade-in and transform */
+    }
+
+    .carousel-item.active .carousel-image {
+        opacity: 1; /* Show active image */
+        transform: scale(1.1); /* Slight zoom effect */
+    }
+
+    /* Banner Styles */
+    .banner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent background to highlight text */
+        color: white;
+        text-align: center;
+        opacity: 0; /* Hidden initially */
+        animation: fadeIn 2s forwards 1s; /* Fade in effect */
+    }
+
+    .welcome-message {
+        font-size: 3rem;
+        opacity: 0; /* Hidden initially */
+        animation: slideIn 2s forwards 2s; /* Slide in after 2 seconds */
+    }
+
+    /* Fade in effect for the banner */
+    @keyframes fadeIn {
+        to {
+            opacity: 1;
+        }
+    }
+
+    /* Slide in effect for the text */
+    @keyframes slideIn {
+        from {
+            transform: translateY(-50px);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    /* Button Styles */
+    .btn-apply {
+        background-color: #ff3333;
+        color: white;
+        border-radius: 5px;
+        padding: 10px 20px;
+        text-transform: uppercase;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-apply:hover {
+        background-color: #e62e2e;
+    }
+</style>
+
+<!-- JavaScript for Image Carousel -->
+<script>
+    // Automatically transition the carousel every 5 seconds
+    var carouselInterval = setInterval(function() {
+        var carousel = document.querySelector('#imageCarousel');
+        var carouselInstance = bootstrap.Carousel.getInstance(carousel);
+        carouselInstance.next(); // Move to next item
+    }, 20000);
+</script>
+
+
+    <style>
+        body {
+            background-color: #f0f8ff; /* Light blue background color */
+            color: #333; /* Dark text for readability */
+        }
+        .card {
+            background-color: #ffffff; /* White background for cards */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+        }
+        .card-title {
+            font-size: 1.5rem; /* Larger font size for headings */
+            margin-bottom: 1rem; /* Spacing below the title */
+        }
+        .card-text {
+            font-size: 1rem; /* Font size for the text */
+        }
+        h2 {
+            color: #0056b3; /* Attractive color for main headings */
+        }
+    </style>
+
+<body>
+
+    
+
+    <style>
+        body {
+            background-color: #002222;
+            color: white;
+        }
+
+        .history-section {
+            padding: 50px 0;
+        }
+
+        .history-title {
+            color: #ffcc00;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .underline {
+            border-bottom: 1px solid #ffcc00;
+            margin-bottom: 20px;
+        }
+
+        .history-content {
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-evenly;
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            color: #ffcc00;
+        }
+
+        .section-header a {
+            color: #ffcc00;
+            text-decoration: none;
+            padding: 10px;
+        }
+
+        .section-header a:hover {
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .section-header {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+
+    
+        <style>
+            body {
+                background-color: #002222;
+                color: white;
+            }
+    
+            .history-section {
+                padding: 50px 0;
+            }
+    
+            .history-title {
+                color: #ffcc00;
+                text-transform: uppercase;
+                font-weight: bold;
+            }
+    
+            .underline {
+                border-bottom: 1px solid #ffcc00;
+                margin-bottom: 20px;
+            }
+    
+            .history-content {
+                font-size: 1rem;
+                line-height: 1.8;
+            }
+    
+            .section-header {
+                display: flex;
+                justify-content: space-evenly;
+                font-weight: bold;
+                font-size: 1.2rem;
+                text-transform: uppercase;
+                color: #ffcc00;
+            }
+    
+            .section-header a {
+                color: #ffcc00;
+                text-decoration: none;
+                padding: 10px;
+                cursor: pointer;
+            }
+    
+            .section-header a:hover {
+                color: white;
+            }
+    
+            @media (max-width: 768px) {
+                .section-header {
+                    flex-direction: column;
+                    align-items: center;
+                }
+            }
+    
+            /* Hide all tab content initially */
+            .tab-content > div {
+                display: none;
+            }
+    
+            /* Active tab should display */
+            .tab-content > .active {
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+    
+        <!-- Our History Section -->
+<section class="history-section">
+    <div class="container">
+        <!-- Section Headers (Our History, Our Pastor, Media, Outreach) -->
+        <div class="section-header">
+            <a href="#historyContent" class="tab-link active">Mission Statement</a>
+            <a href="#pastorContent" class="tab-link">Our Core Values</a>
+            <a href="#mediaContent" class="tab-link">Ministry Programs</a>
+            <a href="#outreachContent" class="tab-link">Get Involved</a>
+        </div>
+        <div class="underline"></div>
+
+        <!-- Main Content -->
+        <div class="tab-content">
+            <div id="historyContent" class="tab-pane active">
+                <h3 class="history-title">Our Mission</h3>
+                <p class="history-content">
+                    Precious Beloved Children Ministries exists to provide holistic development, education and
+                    Spiritual guidance to less privileged youths and childrens, equipping them with skills,
+                    knowledge and faith, providing employment opportunities to break the cycle of poverty and 
+                    become change-makers in their communities.
+                </p>
+                <p class="history-content">
+                    Dedicated to sharing the love of Christ and making a difference
+                     in the lives of individuals and communities. Through our mission of faith, service, and 
+                     outreach, we are committed to empowering people to find hope, purpose, and a deeper 
+                     connection with God. Our ministry is built on the foundation of love, compassion, 
+                     and service to humanity.
+                </p>
+            </div>
+
+            <div id="pastorContent" class="tab-pane">
+              <h3 class="history-title">Core Values</h3>
+              <ol style="text-align: left; line-height: 1.5;">
+                <li><strong style="color: rgb(25, 183, 245);">Christ-centeredness:</strong> 
+                  Jesus Christ is our foundation and focus. We aim to model our lives, teachings, and actions after Him, ensuring that everything we do points back to Christ and His love.
+                </li><br>
+                <li><strong style="color: rgb(25, 183, 245);">Biblical Authority:</strong> 
+                  Scripture guides our beliefs and actions, serving as the ultimate authority in all aspects of life. We rely on the Bible to instruct, correct, and inspire us toward a life that honors God.
+                </li><br>
+                <li><strong style="color: rgb(25, 183, 245);">Prayerfulness:</strong> 
+                  Prayer is essential to our relationship with God. Through prayer, we seek His guidance, express our gratitude, and align our hearts with His will, making it a foundational practice in all our activities.
+                </li><br>
+                <li><strong style="color: rgb(25, 183, 245);">Compassion:</strong> 
+                  We demonstrate God's love through serving others. By caring for those in need, we embody the compassion of Christ and strive to make a tangible difference in people's lives.
+                </li><br>
+                <li><strong style="color: rgb(25, 183, 245);">Unity:</strong> 
+                  We foster unity among Christians and communities. By building strong, cooperative relationships, we aim to overcome divisions and work together toward common goals, promoting peace and understanding.
+                </li><br>
+                <li><strong style="color: rgb(25, 183, 245);">Evangelism:</strong> 
+                  We share the Gospel with the lost, reaching out to those who have yet to experience God's love. Our mission is to spread the message of hope and salvation, inviting others to come to know Christ.
+                </li><br>
+                <li><strong style="color: rgb(25, 183, 245);">Discipleship:</strong> 
+                  We nurture and equip believers for ministries, helping them grow in faith and develop the skills needed to serve others effectively. Through discipleship, we prepare believers to live out their calling.
+                </li><br>
+                <li><strong style="color: rgb(25, 183, 245);">Excellence:</strong> 
+                  We foster academic excellence in schools and maintain a strong work ethic in all endeavors. We believe in doing all things to the best of our ability, honoring God through our dedication and effort.
+                </li><br>
+                <li><strong style="color: rgb(25, 183, 245);">Integrity:</strong> 
+                  We uphold honesty, transparency, and accountability in all our actions. Integrity is essential to building trust and credibility, and we strive to exemplify these principles in our personal and professional lives.
+                </li><br>
+                <li><strong style="color: rgb(25, 183, 245);">Spiritual Growth:</strong> 
+                  We prioritize personal and communal spiritual development. We encourage continuous learning, reflection, and transformation, enabling us to deepen our faith and strengthen our walk with God.
+                </li>
+              </ol>
+            </div>
+            
+            
+            
+
+            <div id="mediaContent" class="tab-pane">
+              <h3 class="history-title">Key Programs</h3>
+              <p class="history-content">
+                Our programs are designed to meet the spiritual, emotional, and physical needs of our community:
+              </p>
+              <ol style="text-align: left; line-height: 1.5;">
+                <li>
+                  <strong style="color: rgb(25, 183, 245);">Education:</strong> 
+                  Providing quality education to underprivileged children and youths to equip them with knowledge and skills for a brighter future. We offer scholarships, school supplies, and tutoring services to ensure that everyone has a chance to learn and succeed.
+                </li>
+                <br>
+                <li>
+                  <strong style="color: rgb(25, 183, 245);">Agricultural Development:</strong>
+                  Training community members in sustainable farming techniques and providing resources to boost food security and economic stability. This program aims to reduce hunger and improve income through modern agricultural practices and crop management.
+                </li>
+                <br>
+                <li>
+                  <strong style="color: rgb(25, 183, 245);">Technical Skills Training:</strong>
+                  Offering hands-on training in vocational skills such as carpentry, tailoring, and IT to empower individuals to become self-sufficient and create employment opportunities. The goal is to reduce unemployment by providing the necessary skills to start small businesses or find stable jobs.
+                </li>
+                <br>
+                <li>
+                  <strong style="color: rgb(25, 183, 245);">Evangelism and Discipleship:</strong>
+                  Sharing the Gospel and nurturing spiritual growth through Bible study, prayer groups, and outreach programs. This program seeks to build a strong faith foundation in individuals, helping them to deepen their relationship with God and live out their faith in everyday life.
+                </li>
+                <br>
+                <li>
+                  <strong style="color: rgb(25, 183, 245);">Mentorship and Leadership Development:</strong>
+                  Guiding young leaders through mentorship programs, leadership training, and personal development workshops. This program focuses on developing the next generation of community leaders who are equipped to make positive changes.
+                </li>
+                <br>
+                <li>
+                  <strong style="color: rgb(25, 183, 245);">Health and Wellness:</strong>
+                  Promoting holistic health by providing access to medical care, wellness education, and counseling services. This program aims to improve the overall well-being of the community by addressing physical, mental, and emotional health needs.
+                </li>
+              </ol>
+            </div>
+            
+
+            <div id="outreachContent" class="tab-pane">
+                <h3 class="history-title">Volunteer</h3>
+                <p class="history-content">
+                    We believe in the power of community and encourage you to get involved in the ministry’s activities. 
+                    Whether it’s through volunteering, attending events, or supporting our outreach programs, there’s 
+                    always a way to contribute. Together, we can make a lasting impact.
+                </p>
+                
+                <!-- Centered Join Now Button -->
+                <div class="text-center">
+                    <a href="{% url 'contact_us' %}" class="btn btn-primary btn-lg">Join Us</a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+<!-- Custom CSS to apply text alignment and spacing based on screen size -->
+<style>
+    /* Default styling for larger devices */
+    .history-content {
+        text-align: justify; /* Justify text on larger screens */
+    }
+
+    /* For small devices (screens less than 768px) */
+    @media (max-width: 767px) {
+        .history-content {
+            text-align: left; /* Left-align text to avoid large gaps on small screens */
+            line-height: 1.5; /* Adjust line height to reduce spacing */
+        }
+        .history-content ul {
+            padding-left: 20px; /* Adjust padding for a more compact look */
+            
+        }
+        .history-content li {
+            margin-bottom: 10px; /* Reduce margin between list items */
+            
+        }
+    }
+</style>
+
+    
+    
+    <!-- JavaScript to handle tab switching -->
+    <script>
+        // Add event listeners to all tab links
+        document.querySelectorAll('.tab-link').forEach(function (link) {
+            link.addEventListener('click', function (event) {
+                event.preventDefault();
+                
+                // Remove the active class from all tabs
+                document.querySelectorAll('.tab-link').forEach(function (item) {
+                    item.classList.remove('active');
+                });
+    
+                // Hide all tab panes
+                document.querySelectorAll('.tab-pane').forEach(function (pane) {
+                    pane.classList.remove('active');
+                });
+    
+                // Activate the clicked tab
+                link.classList.add('active');
+                const target = document.querySelector(link.getAttribute('href'));
+                target.classList.add('active');
+            });
+        });
+    </script>
+    
+    </body>
+    </html>
+    
+    
+    
+    
+    
+
+
+
+
+
+
+    <style>
+        /* Upcoming Events Section Styles */
+        .events-section {
+          background-color: #1bb3b3; /* Different background color for events section */
+          padding: 50px 0; /* Padding for the events section */
+          border-radius: 10px; /* Rounded corners */
+          margin: 20px 0; /* Margin to separate from other sections */
+        }
+      
+        .events-section h2 {
+          color: #ffcc00; /* Title color */
+          text-align: center; /* Center the title */
+        }
+      
+        .event-card {
+          background-color: #004444; /* Darker background color for event cards */
+          border-radius: 8px; /* Rounded corners */
+          margin-bottom: 20px;
+          overflow: hidden; /* Ensure content fits within the card */
+          opacity: 0; /* Start hidden */
+          transform: translateY(50px); /* Start slightly below */
+          transition: opacity 0.8s ease, transform 0.8s ease; /* Smooth transition for scroll animation */
+        }
+      
+        /* Hover effect for the event cards */
+        .event-card:hover {
+          transform: scale(1.02); /* Slightly enlarge card on hover */
+        }
+      
+        .event-image {
+          width: 100%; /* Make the image responsive */
+          height: auto; /* Maintain aspect ratio */
+        }
+      
+        .event-title {
+          color: #ffcc00; /* Event title color */
+        }
+      
+        .event-date {
+          color: #cccccc; /* Lighter color for the date */
+        }
+      
+        /* Visible state when scrolled into view */
+        .event-card.show {
+          opacity: 1;
+          transform: translateY(0); /* Move to normal position */
+        }
+      
+        /* Reset hidden state for items when scrolled out of view */
+        .event-card.hide {
+          opacity: 0;
+          transform: translateY(50px); /* Move back below */
+        }
+      
+        /* Responsive styling */
+        @media (max-width: 768px) {
+          .section-header {
+            flex-direction: column;
+            align-items: center;
+          }
+        }
+      </style>
+      
+      <div class="events-section" id="event">
+        <h2 class="text-center">Upcoming Events</h2>
+        <div class="container">
+            <div class="row">
+                {% if events %}
+                    <!-- Loop through events and display them -->
+                    {% for event in events %}
+                        <div class="col-md-4 d-flex align-items-stretch">
+                            <div class="card event-card mb-4">
+                                <div class="row no-gutters">
+                                    <div class="col-md-4">
+                                        <img src="{{ event.image.url }}" alt="{{ event.title }}" class="event-image">
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="event-title">{{ event.title }}</h5>
+                                            <p class="event-date">Date: {{ event.date }}</p>
+                                            <p>{{ event.description }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <!-- Display message if no events are available -->
+                    <div class="col-12 text-center">
+                      <div class="no-event" style="font-size: 40px;"><marquee>No Event Available!</marquee></div>
+                        
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+
+    <style>
+    /* Events Section */
+    .events-section {
+        padding: 2rem 0;
+    }
+    
+    .events-section h2 {
+        font-size: 2rem;
+        color: black;
+        font-weight: bold;
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+    
+    /* Event Card Styling */
+    .event-card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        margin-bottom: 1rem; /* Add space between cards */
+    }
+    
+    /* Event Image Styling */
+    .event-image {
+        width: 100%;
+        height: 150px; /* Fixed height for image */
+        object-fit: cover;
+        border-top-left-radius: 8px;
+    }
+    
+    /* Event Title and Date */
+    .event-title {
+        font-size: 1.25rem;
+        color: black;
+        font-weight: 600;
+    }
+    
+    .event-date {
+        font-size: 1.25rem;
+        color: maroon;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        padding: 4px 8px;
+        background-color: #9eb7e4;
+        border-radius: 4px;
+        display: inline-block;
+        margin-bottom: 1rem;
+        
+    }
+    
+    /* Responsive Styling */
+    .container {
+        max-width: 1200px;
+        
+    }
+    
+   
+    /* Justify text in card body without excessive letter spacing */
+    .card-body p {
+        text-align: justify;
+        word-spacing: normal; /* Remove extra letter spacing */
+        letter-spacing: normal; /* Ensures no spacing between letters */
+        margin-bottom: 1rem;
+        padding: 0 2px; /* Padding for better spacing */
+        padding: 4px;
+       color: #5a0f0f;
+    }
+    
+    /* Card content and image layout adjustments for smaller screens */
+    @media (max-width: 768px) {
+        .event-card {
+            flex-direction: column;
+            margin-bottom: 1.5rem; /* Increase space between cards */
+        }
+    
+        .event-image {
+            height: 250px; /* Increase image height for small devices */
+            border-radius: 8px 8px 0 0;
+        }
+    }
+    
+    @media (max-width: 576px) {
+        .event-card {
+            flex-direction: column;
+            margin-bottom: 1.5rem; /* Space between cards */
+        }
+    
+        .event-image {
+            height: 250px; /* Further increase image height on very small devices */
+            border-radius: 8px 8px 0 0;
+        }
+    
+        .event-title {
+            font-size: 1.1rem;
+        }
+    
+        .event-date {
+            font-size: 0.8rem;
+        }
+    }
+
+
+    </style>
+    
+       
+
+
+      <!-- Script to trigger the transition when the section scrolls into view -->
+      <script>
+        window.addEventListener('scroll', function() {
+          const eventCards = document.querySelectorAll('.event-card');
+          const scrollPosition = window.scrollY + window.innerHeight;
+      
+          eventCards.forEach(card => {
+            const cardTop = card.getBoundingClientRect().top + window.scrollY;
+      
+            // Add class if the card is in view
+            if (scrollPosition > cardTop + 100) {
+              card.classList.add('show');
+              card.classList.remove('hide');
+            }
+            // Remove class when card scrolls out of view
+            else if (scrollPosition < cardTop + window.innerHeight - 100) {
+              card.classList.remove('show');
+              card.classList.add('hide');
+            }
+          });
+        });
+      </script>
+      
+      </body>
+      
+
+
+
+    <style>
+        .testimony-section {
+          padding: 60px 0;
+          background-color: #f8f9fa;
+        }
+      
+        /* Styling for the testimony items */
+        .testimony-item {
+          display: flex;
+          align-items: center;
+          margin-bottom: 30px;
+          opacity: 0; /* Start hidden */
+          transform: translateY(50px); /* Start slightly below */
+          transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+      
+        .testimony-item img {
+          width: 80px;
+          height: 80px;
+          border-radius: 50%;
+          object-fit: cover;
+          margin-right: 20px;
+          transition: transform 0.7s ease;
+        }
+      
+        .testimony-content h5 {
+          margin-bottom: 10px;
+          color: #343a40;
+          opacity: 0;
+          transform: translateX(-30px); /* Start slightly to the left */
+          transition: opacity 0.8s ease 0.4s, transform 0.8s ease 0.4s; /* Delayed for text */
+        }
+      
+        .testimony-content p {
+          font-size: 1rem;
+          color: #6c757d;
+          opacity: 0;
+          transform: translateX(-30px); /* Start slightly to the left */
+          transition: opacity 0.8s ease 0.6s, transform 0.8s ease 0.6s; /* Delayed for text */
+        }
+      
+        /* Visible state when scrolled into view */
+        .testimony-item.show {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      
+        .testimony-item.show img {
+          transform: scale(1.1); /* Slight image zoom effect */
+        }
+      
+        .testimony-item.show .testimony-content h5,
+        .testimony-item.show .testimony-content p {
+          opacity: 1;
+          transform: translateX(0); /* Text moves to normal position */
+        }
+      
+        /* Reset hidden state for items when scrolled out of view */
+        .testimony-item.hide {
+          opacity: 0;
+          transform: translateY(50px); /* Move back below */
+        }
+      </style>
+
+
+      
+<section class="testimony-section">
+  <section id="ministries" class="our-ministries-section py-5">
+    <div class="container">
+        <!-- Main Title for Our Ministries -->
+        <h2 class="text-center mb-5">Our Ministries</h2>
+        <p class="text-center mb-5 description-text">Precious Beloved Children Ministries (PBCM) is dedicated to transforming lives and strengthening communities through holistic support. Our ministries aim to provide children, women, and youth with the spiritual, educational, and emotional resources they need to thrive. Each program is designed to address the unique challenges these groups face and help them grow in faith, self-reliance, and hope.</p>
+  
+        <!-- Ministry Cards -->
+        <div class="row">
+            <!-- Children’s Ministry -->
+            <div class="col-md-4 d-flex align-items-stretch mb-4">
+                <div class="card h-100">
+                    <div class="card-img-container">
+                        <img src="{% static 'images/children.jpg' %}" class="card-img-top" alt="Children's Ministry Image">
+                    </div>
+                    <div class="card-body text-center d-flex flex-column">
+                        <h3 class="card-title text-primary">Children’s Ministry</h3>
+                        <p class="card-text text-secondary">Our Children’s Ministry provides a safe and nurturing environment for children to grow spiritually and academically. We offer educational support, healthcare access, and faith-based activities designed to empower each child to achieve their full potential. Through mentorship, tutoring, and community programs, we are dedicated to creating a brighter future for every child in our care.</p>
+                    </div>
+                </div>
+            </div>
+  
+            <!-- Women’s Ministry -->
+            <div class="col-md-4 d-flex align-items-stretch mb-4">
+                <div class="card h-100">
+                    <div class="card-img-container">
+                        <img src="{% static 'images/Teachers.jpg' %}" class="card-img-top" alt="Women's Ministry Image">
+                    </div>
+                    <div class="card-body text-center d-flex flex-column">
+                        <h3 class="card-title text-primary">Women’s Ministry</h3>
+                        <p class="card-text text-secondary">The Women’s Ministry is dedicated to empowering women through education, skill development, and spiritual support. We provide workshops on entrepreneurship, healthcare, and personal development, fostering resilience and independence. Our mission is to equip women with the tools they need to uplift themselves and their families, creating a ripple effect of positive change throughout the community.</p>
+                    </div>
+                </div>
+            </div>
+  
+            <!-- Youth Ministry -->
+            <div class="col-md-4 d-flex align-items-stretch mb-4">
+                <div class="card h-100">
+                    <div class="card-img-container">
+                        <img src="{% static 'images/men.jpg' %}" class="card-img-top" alt="Youth Ministry Image">
+                    </div>
+                    <div class="card-body text-center d-flex flex-column">
+                        <h3 class="card-title text-primary">Youth Ministry</h3>
+                        <p class="card-text text-secondary">Our Youth Ministry focuses on mentorship, leadership, and faith-based guidance for young people. Through workshops, group activities, and personal mentorship, we empower youth to make positive life choices and develop into responsible, community-minded adults. We believe that by investing in our youth today, we’re shaping the leaders of tomorrow.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+  html {
+    scroll-behavior: smooth;
+}
+
+    /* Style for the description text in the main section */
+    .description-text {
+        color: #333; /* Dark gray color for readability */
+        font-size: 1.1rem; /* Slightly larger font for better readability */
+    }
+
+    /* Ensures all card images have a uniform aspect ratio and fit inside the card */
+    .card-img-container {
+        height: 200px;
+        overflow: hidden;
+    }
+    .card-img-top {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Ensure card bodies are of uniform height by using flex properties */
+    .card-body {
+        flex: 1;
+    }
+</style>
+
+
+      
+      <!-- Testimonies Section -->
+      <div class="container">
+          <h2 class="text-center mb-5">Testimonies and Stories</h2>
+      
+          <!-- Testimony Items -->
+          <div class="row testimony-container">
+              <!-- First Testimony -->
+              <div class="col-md-6 testimony-item">
+                  <img src="{% static 'images/manager.jpg' %}" alt="Testimony Image for John Doe" class="img-fluid rounded-circle">
+                  <div class="testimony-content">
+                      <h5>John Doe's Story</h5>
+                      <p>"Precious Beloved Ministries offered me a new beginning when I was at my lowest. Their support helped me realize my potential and restored my faith in a brighter future."</p>
+                  </div>
+              </div>
+              
+              <!-- Second Testimony -->
+              <div class="col-md-6 testimony-item">
+                  <img src="{% static 'images/manager.jpg' %}" alt="Testimony Image for Jane Smith" class="img-fluid rounded-circle">
+                  <div class="testimony-content">
+                      <h5>Jane Smith's Experience</h5>
+                      <p>"Thanks to the ministry, I have regained hope and direction. Through their guidance and support, I now face life with confidence and a renewed sense of purpose."</p>
+                  </div>
+              </div>
+
+              <!-- Third Testimony -->
+              <div class="col-md-6 testimony-item">
+                  <img src="{% static 'images/manager.jpg' %}" alt="Testimony Image for Mary Johnson" class="img-fluid rounded-circle">
+                  <div class="testimony-content">
+                      <h5>Mary Johnson's Journey</h5>
+                      <p>"The Women's Ministry helped me gain confidence and skills to support my family. I am now empowered to provide for my children and be a positive role model in my community."</p>
+                  </div>
+              </div>
+              
+              <!-- Fourth Testimony -->
+              <div class="col-md-6 testimony-item">
+                  <img src="{% static 'images/manager.jpg' %}" alt="Testimony Image for Samuel Brown" class="img-fluid rounded-circle">
+                  <div class="testimony-content">
+                      <h5>Samuel Brown's Transformation</h5>
+                      <p>"Through the Youth Ministry, I found a purpose and a supportive community that believes in me. I have learned valuable skills that have changed my life."</p>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+      
+            
+      
+      <!-- Script to trigger the transition when the section scrolls into view -->
+      <script>
+        window.addEventListener('scroll', function() {
+          const items = document.querySelectorAll('.testimony-item');
+          const scrollPosition = window.scrollY + window.innerHeight;
+      
+          items.forEach(item => {
+            const itemTop = item.getBoundingClientRect().top + window.scrollY;
+      
+            // Add class if the item is in view
+            if (scrollPosition > itemTop + 100) {
+              item.classList.add('show');
+              item.classList.remove('hide');
+            } 
+            // Remove class when item scrolls out of view
+            else if (scrollPosition < itemTop + window.innerHeight - 100) {
+              item.classList.remove('show');
+              item.classList.add('hide');
+            }
+          });
+        });
+      </script>
+      
+
+
+ 
+
+
+      
+
+<!-- Blog Section -->
+<section class="blog-section">
+    <div class="container d-flex align-items-center">
+      <!-- Blog Title on the Left -->
+      <h2 class="blog-title">Blog</h2>
+      
+      <!-- Arrow Button to Blog Page next to the title -->
+      <a href="{% url 'blog_home' %}" class="blog-link ml-3">
+        <i class="arrow-icon">&#8594;</i> <!-- Arrow pointing right -->
+      </a>
+    </div>
+
+
+<!-- Volunteer and Get Involved Section -->
+<section class="volunteer-section">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-8">
+          <h2 class="volunteer-title">Get Involved</h2>
+          <p class="volunteer-content">
+            We encourage you to join us in our mission. Whether it's through volunteering, donating, or simply spreading the word, every effort counts!
+          </p>
+        </div>
+        <div class="col-md-4 text-right">
+          <!-- Links to Volunteer and Get Involved -->
+          <div class="volunteer-links">
+            <a href="{% url 'register_donation' %}" class="volunteer-link">Volunteer</a>
+            <br>
+            <a href="{% url 'contact_us' %}" class="volunteer-link">Get Involved</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Styling for the Volunteer Section -->
+  <style>
+    .volunteer-section {
+      padding: 60px 0;
+      
+      opacity: 0; /* Start hidden for animation */
+      transform: translateY(30px); /* Start slightly below */
+      transition: opacity 0.8s ease, transform 0.8s ease; /* Transition for animation */
+    }
+  
+    .volunteer-section.show {
+      opacity: 1; /* Visible state */
+      transform: translateY(0); /* Normal position */
+    }
+  
+    .volunteer-title {
+      font-size: 2.5rem;
+      color: #343a40;
+    }
+  
+    .volunteer-content {
+      font-size: 1.2rem;
+      color: #6c757d;
+    }
+  
+    .volunteer-link {
+      text-decoration: none;
+      color: #007bff; /* Link color */
+      font-size: 1.2rem;
+      transition: color 0.3s ease; /* Transition for color */
+    }
+  
+    .volunteer-link:hover {
+      color: #0056b3; /* Change color on hover */
+    }
+  </style>
+  
+  <!-- Script to trigger the animation when the section scrolls into view -->
+  <script>
+    window.addEventListener('scroll', function() {
+      const section = document.querySelector('.volunteer-section');
+      const sectionPosition = section.getBoundingClientRect().top;
+      const windowHeight = window.innerHeight;
+  
+      if (sectionPosition < windowHeight - 100) {
+        section.classList.add('show');
+      }
+    });
+  </script>
+  
+
+
+  </section>
+  
+  <!-- Styling for the Blog Section -->
+  <style>
+    .blog-section {
+      padding: 60px 0;
+      background-color: #f1f1f1; /* Light background color for blog section */
+    }
+  
+    .blog-title {
+      font-size: 2.5rem;
+      color: #343a40;
+    }
+  
+    .blog-link {
+      text-decoration: none;
+      display: flex; /* Use flex to center the arrow */
+      align-items: center;
+      font-size: 2.5rem; /* Increased font size for the arrow */
+      color: #007bff;
+      transition: color 0.3s ease, transform 0.3s ease; /* Transition for color and transform */
+      margin-left: 15px; /* Space between title and arrow */
+    }
+  
+    .blog-link:hover {
+      color: #0056b3; /* Change color on hover */
+      transform: translateX(5px); /* Move the arrow slightly to the right on hover */
+    }
+  
+    .arrow-icon {
+      font-size: 3rem; /* Increased size of the arrow */
+    }
+  
+    /* Ensures the layout works well on smaller screens */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column; /* Stack elements vertically on small screens */
+        text-align: center;
+      }
+  
+      .blog-link {
+        margin-top: 20px; /* Add space between title and arrow on small screens */
+        margin-left: 0; /* Reset margin on small screens */
+      }
+    }
+  </style>
+
+
+
+
+
+<!-- Load static template tag at the top of your HTML file -->
+
+<!-- Footer Section -->
+<footer class="footer-section">
+  <div class="container position-relative">
+    <div class="row">
+      <div class="col-md-4 mb-3">
+        <h5>About Us</h5>
+        <p>
+          Precious Beloved Ministries is dedicated to uplifting our community through outreach, service, and spiritual growth. Join us in our mission!
+        </p>
+      </div>
+      <div class="col-md-4 mb-3">
+        <h5>Quick Links</h5>
+        <ul class="list-unstyled">
+          <li><a href="/about" class="text-light">About Us</a></li>
+          <li><a href="/blog" class="text-light">Blog</a></li>
+          <li><a href="{% url 'register_donation' %}" class="text-light">Volunteer</a></li>
+          <li><a href="{% url 'contact_us' %}" class="text-light">Get Involved</a></li>
+          <li><a href="/contact" class="text-light">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4 mb-3">
+        <h5>Follow Us</h5>
+        <div>
+          <a href="#" class="text-light mr-2"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="text-light mr-2"><i class="bi bi-twitter"></i></a>
+          <a href="#" class="text-light mr-2"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="text-light mr-2"><i class="bi bi-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-4">
+      <p>&copy; 2024 Precious Beloved Ministries. All Rights Reserved.</p>
+    </div>
+  </div>
+  <div class="footer-background"></div> <!-- Background image -->
+</footer>
+
+<!-- Styling for the Footer Section -->
+<style>
+  .footer-section {
+    position: relative; /* Positioning for the background */
+    overflow: hidden; /* Ensure overflow is hidden */
+    padding: 60px 0; /* Add padding for the footer */
+  }
+
+  .footer-background {
+    background-image: url("{% static 'images/mal.jpg' %}"); /* Default image */
+    background-size: cover; /* Cover the entire footer */
+    background-position: center; /* Center the image */
+    position: absolute; /* Position it absolutely */
+    top: 0; /* Align to the top */
+    left: 0; /* Align to the left */
+    right: 0; /* Align to the right */
+    bottom: 0; /* Align to the bottom */
+    opacity: 0.2; /* Adjust opacity for dark overlay */
+    z-index: 0; /* Behind other content */
+    animation: changeBackground 20s infinite; /* Animation for background change */
+  }
+
+  @keyframes changeBackground {
+    0% { background-image: url("{% static 'images/jeff.jpg' %}"); }
+    25% { background-image: url("{% static 'images/Teachers.jpg' %}"); } /* Second image */
+    50% { background-image: url("{% static 'images/House.jpg' %}"); } /* Third image */
+    75% { background-image: url("{% static 'images/uncle jeff.jpg' %}"); } /* Fourth image */
+    100% { background-image: url("{% static 'images/children.jpg' %}"); } /* Loop back to the first image */
+  }
+
+  .container {
+    position: relative; /* Keep content above the background */
+    z-index: 1; /* Above background */
+  }
+
+  footer {
+    background-color: transparent; /* Allow background image to show */
+  }
+
+  footer a {
+    transition: color 0.3s ease; /* Transition for link color */
+  }
+
+  footer a:hover {
+    color: #ffcc00; /* Change link color on hover */
+  }
+</style>
+
+  
+  
+  
+
+
+{% endblock %}

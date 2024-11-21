@@ -1,0 +1,214 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container my-5" style="background-color: #f0f8ff; padding: 20px; border-radius: 15px;">
+  <!-- Header Section with Animation -->
+  <h1 class="text-center mb-4 fade-in-animation">Welcome to Precious Beloved Ministries Blog</h1>
+  <p class="text-center lead fade-in-animation">
+    We are thrilled to have you visit our blog! Here, our leadership team and guest writers share spiritual insights, teachings, and updates about our ministry. We invite you to read, reflect, and grow in your faith. Feel free to share your thoughts and comments. We look forward to connecting with you!
+  </p>
+  <hr>
+
+  <!-- Comment Form Section with Fade-In Animation -->
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-lg p-4 form-fade-in" style="background-color: #ffffff; border-radius: 10px;">
+        <h3 class="text-center mb-4">Leave a Comment</h3>
+        <form method="POST">
+          {% csrf_token %}
+          {{ form.as_p }}  <!-- Render the form fields with Bootstrap classes from forms.py -->
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary btn-block btn-hover-effect">Post Comment</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Custom Styles and Animations -->
+<style>
+  /* Body background color */
+  body {
+    background-color: #e9ecef;  /* Light grey background */
+  }
+
+  /* Typography and button colors */
+  h1, h3 {
+    color: #004085;
+  }
+
+  /* Button hover effect */
+  .btn-primary {
+    background-color: #0069d9;
+    border-color: #0062cc;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+  }
+
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+    transform: scale(1.05); /* Slight zoom on hover */
+  }
+
+  /* Card hover effect */
+  .card {
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .card:hover {
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px); /* Move up slightly on hover */
+  }
+
+  /* Fade-in animation */
+  .fade-in-animation {
+    animation: fadeIn 2s ease-in-out forwards;
+    opacity: 0;
+  }
+
+  /* Fade-in effect for the form */
+  .form-fade-in {
+    animation: formFadeIn 1.5s ease-in-out forwards;
+    opacity: 0;
+  }
+
+  /* Keyframes for fade-in animation */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-30px); /* Slide in from above */
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0); /* Settle into place */
+    }
+  }
+
+  @keyframes formFadeIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.9); /* Slight zoom-in effect */
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1); /* Return to original size */
+    }
+  }
+</style>
+
+<!-- Footer Section -->
+<footer class="footer-section text-light">
+    <div class="container position-relative">
+      <div class="row text-center text-md-start"> <!-- Add text-center for smaller devices -->
+        <div class="col-md-4 mb-4 mx-auto">
+          <h5>About Us</h5>
+          <p>
+            Precious Beloved Ministries is dedicated to uplifting our community through outreach, service, and spiritual growth. Join us in our mission!
+          </p>
+        </div>
+        <div class="col-md-4 mb-4 mx-auto">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="/about" class="footer-link">About Us</a></li>
+            <li><a href="/blog" class="footer-link">Blog</a></li>
+            <li><a href="/volunteer" class="footer-link">Volunteer</a></li>
+            <li><a href="{% url 'contact_us' %}" class="footer-link">Get Involved</a></li>
+            <li><a href="/contact" class="footer-link">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4 mb-4 mx-auto">
+          <h5>Follow Us</h5>
+          <div class="d-flex justify-content-center justify-content-md-start"> <!-- Center icons on smaller screens -->
+            <a href="#" class="text-light me-3"><i class="bi bi-facebook"></i></a>
+            <a href="#" class="text-light me-3"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="text-light me-3"><i class="bi bi-instagram"></i></a>
+            <a href="#" class="text-light me-3"><i class="bi bi-youtube"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-5">
+        <p>&copy; 2024 Precious Beloved Ministries. All Rights Reserved.</p>
+      </div>
+    </div>
+    <div class="footer-background"></div> <!-- Background image -->
+</footer>
+
+<!-- Styling for the Footer Section -->
+<style>
+  .footer-section {
+    position: relative;
+    padding: 50px 0;
+    background-color: #282828;
+    color: #ffffff; /* Ensure text is white */
+    overflow: hidden;
+  }
+
+  .footer-background {
+    background-image: url("{% static 'images/mal.jpg' %}");
+    background-size: cover;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.2;
+    z-index: 0;
+    animation: changeBackground 20s infinite;
+  }
+
+  @keyframes changeBackground {
+    0% { background-image: url("{% static 'images/jeff.jpg' %}"); }
+    25% { background-image: url("{% static 'images/Teachers.jpg' %}"); } /* Second image */
+    50% { background-image: url("{% static 'images/House.jpg' %}"); } /* Third image */
+    75% { background-image: url("{% static 'images/uncle jeff.jpg' %}"); } /* Fourth image */
+    100% { background-image: url("{% static 'images/children.jpg' %}"); }
+  }
+
+  .footer-section .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-link {
+    color: #ffffff; /* White color for footer links */
+    transition: color 0.3s ease;
+  }
+
+  .footer-link:hover {
+    color: #ffcc00; /* Hover color */
+  }
+
+  footer a:hover i {
+    color: #ffcc00; /* Icon hover color */
+  }
+
+  footer h5 {
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+
+  footer p, footer ul {
+    font-size: 1.1rem;
+  }
+
+  footer i {
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+  }
+
+  /* Center content on small screens */
+  @media (max-width: 768px) {
+    .footer-section .row > div {
+      text-align: center;
+    }
+    .footer-section .d-flex {
+      justify-content: center;
+    }
+  }
+</style>
+
+
+{% endblock %}
+
